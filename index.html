@@ -1,1 +1,140 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Monpu Love ❤️</title>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    display: none;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #ff4b6e;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    margin-top: 20px;
+}
+
+h1, p {
+    color: white;
+}
+
+.lip {
+    font-size: 90px;
+    animation: kiss 1.2s infinite;
+}
+
+@keyframes kiss {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 4s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SCREEN 1 -->
+<div class="container" id="screen1" style="display:block;">
+    <h1>Hey Darling ❤️ Happy Valentine’s Day ❤️</h1>
+    <button onclick="showKiss()">Do you want a kiss, click here</button>
+</div>
+
+<!-- SCREEN 2 -->
+<div class="container" id="screen2">
+    <h1>Here comes your kiss 💋</h1>
+    <div class="lip">💋</div>
+    <br>
+    <button id="loveBtn" onclick="showLove()" style="display:none;">See my love for you</button>
+</div>
+
+<!-- SCREEN 3 -->
+<div class="container" id="screen3">
+    <h1>You are my forever ❤️</h1>
+    <img src="orangutan.png" width="150"><br><br>
+    <img src="proposal.gif" width="250"><br><br>
+    <p>
+        From the moment you came into my life,<br>
+        everything became brighter and warmer ❤️<br><br>
+        I love you more than words can ever express.
+    </p>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let music = document.getElementById("bgMusic");
+
+function showKiss() {
+    document.getElementById("screen1").style.display = "none";
+    document.getElementById("screen2").style.display = "block";
+
+    music.play().catch(() => {});
+
+    // floating hearts
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (15 + Math.random() * 25) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 4000);
+    }, 500);
+
+    // show next button after 5 sec
+    setTimeout(() => {
+        document.getElementById("loveBtn").style.display = "inline-block";
+    }, 5000);
+}
+
+function showLove() {
+    document.getElementById("screen2").style.display = "none";
+    document.getElementById("screen3").style.display = "block";
+}
+</script>
+
+</body>
+</html>
+
+
